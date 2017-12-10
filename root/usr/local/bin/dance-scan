@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-set -ex
+set -e
+dance-yell "Scanner activated."
 while true; do
   id=$(dance-scan-once)
   if jq '.[] | select(.Admin == "x")' < /var/dance/students.json | grep >/dev/null "$id"; then
