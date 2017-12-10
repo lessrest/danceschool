@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# Make the script exit on escape in the menu
+set -ex
+
+command=$(echo | dance-menu \
+  "1. A student is here but forgot their card" \
+  "2. A student is actually absent today" \
+  "3. Which students have registered today?" \
+  "4. Upgrade software" \
+  "5. Reboot"
+)
+
+case $command in
+  1) dance-yell "Hey, $(dance-pick-student)!"  ;;
+  2) dance-yell "Bye, $(dance-pick-student)!" ;;
+  3) dance-show-todays-students ;;
+  4) dance-ui rxvt -rv -e sh -c "sudo dance-upgrade && sleep 5" ;;
+  5) reboot ;;
+esac

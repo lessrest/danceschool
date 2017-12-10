@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -ex
+while true; do
+  id=$(dance-scan-once)
+  if jq '.[] | select(.Admin == "x")' < /var/dance/students.json | grep >/dev/null "$id"; then
+    dance-admin-menu
+  else
+    if grep >/dev/null "$id" /var/dance/today/registered-students; then
+      dance-yell "Already registered."
+    else
+      if dance-register-student "$id" >> /var/dance/new; then
+        dance-enqueue-bleepings &
+        echo "$id" >> /var/dance/today/registered-students
+        dance-yell "Hello, $(dance-student-name "$id")."
+      else
+        dance-yell "Go home, kid!"
+      fi
+    fi
+  fi
+  sleep 0.3
+done

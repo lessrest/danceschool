@@ -1,0 +1,36 @@
+#!/usr/bin/env python
+import json
+import sys
+import time
+
+uid = sys.argv[1]
+
+with open("/var/dance/students.json") as studentsfile:
+    with open("/var/dance/today/classes") as classesfile:
+        students = json.load(studentsfile)
+        student = None
+        for x in students:
+            if x["Card UID"] == uid:
+                student = x
+                break
+        else:
+            sys.exit(1)
+
+        classes = json.load(classesfile)
+        n = 0
+        for k in classes.keys():
+            if k in student:
+                n = n + 1
+                bleep = {
+                    "Student ID": student["ID"],
+                    "Minutes": classes[k]["minutes"],
+                    "Class name": k,
+                    "Timestamp": time.strftime("%Y-%m-%d %H:%M")
+                }
+                print json.dumps(bleep)
+
+        if n > 0:
+            sys.exit(0)
+        else:
+            sys.exit(1)
+            

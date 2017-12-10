@@ -1,0 +1,12 @@
+[Unit]
+Description=Dance school software upgrade system
+After=network-online.target
+Requires=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/dance-upgrade
+
+[Install]
+WantedBy=multi-user.target
+Alias=dance-upgrade.service

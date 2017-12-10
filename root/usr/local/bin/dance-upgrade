@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -ex
+
+# Go to the place where the source is stored
+cd "$(dance-home-path)"
+
+# DISABLE UPGRADE
+exit
+
+# Download new stuff from the source repository
+git fetch upgrade
+
+# Check if there's something new
+if [[ $(git rev-parse HEAD) != $(git rev-parse upgrade/master) ]]; then
+
+  # Start building an email with the change log
+  mail=/tmp/dance-upgrade-mail
+  echo -e >$mail "Upgrading dance system.\n"
+  git >>$mail log HEAD...upgrade/master
+
+  # Make sure the local directory is the newest version
+  git reset --hard upgrade/master
+
+  # Rerun the setup script
+  echo >>$mail -e "Log:\n"
+  if ./setup >>$mail 2>&1; then
+    subject="Dance upgrade successful"
+  else
+    subject="Dance upgrade failed"
+  fi
+
+  # Send the email to the administrators
+  mailx <$mail --subject="$subject" root
+  rm -f $mail
+fi

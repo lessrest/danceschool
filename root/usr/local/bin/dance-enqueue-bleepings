@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+## This script takes all the newly registered bleepings
+## and moves them to a "queue" file, where it will later
+## be found by the spreadsheet uploader.
+##
+## The queue file system lets the students bleep their
+## cards while the spreadsheet uploader is running,
+## in a safe and sound way.
+
+set -x
+
+# First, atomically move the new stuff to the queue file.
+(
+  flock -w 30 -e 200 || { echo dance queue lock timeout; exit 1; }
+  if [ -e /var/dance/new ]; then
+    cat /var/dance/new >> /var/dance/queue
+    rm /var/dance/new
+  fi
+) 200>/var/dance/queue.lock
+
+cat /var/dance/queue
+
+# Then, try to upload and clear the queue file.
+# If this fails completely, it will be retried hourly.
+dance-upload-to-spreadsheet

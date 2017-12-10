@@ -1,0 +1,11 @@
+exec xloadimage -onroot -quiet /var/dance/background.jpg
+set fwcolor orange
+set font Roboto-28
+set bgcolor orange
+set border 0
+set barborder 0
+set wingravity c
+set bargravity c
+set barpadding 28 12
+startup_message off
+exec xhost +

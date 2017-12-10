@@ -1,0 +1,8 @@
+google-api-python-client
+gspread
+oauth2client
+vobject
+tenacity
+filelock
+pyasn1==0.4.2
+RPi.GPIO

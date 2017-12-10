@@ -1,0 +1,22 @@
+* How this works
+
+** Setup procedure
+There's a script in the project root called `setup'.
+
+You can run it several times if you want, or if some step happens to
+fail because the internet was broken or whatever.
+
+It will make all the necessary directories, install all needed
+programs, and so on.
+
+** Periodic tasks
+The setup installs a "cronjob" (chronological job) that updates stuff
+from the internet once every hour.
+
+This script can be found in `/etc/cron.hourly/dance-hourly`.
+
+The tasks are:
+
+   - updating the student file;
+   - updating the calendar file;
+   - and calculating "today's classes".

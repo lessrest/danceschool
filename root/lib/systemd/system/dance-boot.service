@@ -1,0 +1,11 @@
+[Unit]
+Description=Dance school run hourly script at boot
+Wants=network-online.target
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/etc/cron.hourly/dance-hourly
+
+[Install]
+WantedBy=multi-user.target

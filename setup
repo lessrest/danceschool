@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+
+# Array of Debian packages to install
+pkgs=(
+  apt-listchanges     # Report updates to admin
+  curl                # HTTP download tool
+  dmenu               # Keyboard menu tool
+  fonts-roboto        # International font
+  git                 # Source repository tool
+  jq                  # JSON debugging tool
+  lightdm             # Graphical login manager
+  mailutils           # The `mail' program
+  ntp                 # Accurate network clock sync
+  opensmtpd           # SMTP mail server
+  openssh-server      # SSH remote access server
+  python-pip          # Python package installer
+  ratpoison           # Window manager
+  screen              # Terminal multiplexer
+  sudo                # User switching tool
+  unattended-upgrades # Automatic Debian updates
+  xdotool             # Tool for faking keypresses
+  xloadimage          # Image background loader
+  x11-xserver-utils   # For xhost to enable UI services
+)
+
+# Fail on error and print activity
+set -ex
+
+# Install Debian packages
+export DEBIAN_FRONTEND=noninteractive
+apt update -q && apt install -q -yy "${pkgs[@]}"
+
+# Install Python packages
+pip -q install -r requirements.txt
+
+if [ ! -d /usr/local/src/python-spi ]; then
+  (
+    cd /usr/local/src
+    git clone https://github.com/tomstokes/python-spi
+    cd python-spi
+    sudo python setup.py install
+  )
+fi
+
+# Make links into the system root for all our stuff
+( set +x; cd root; find -type f | {
+    while read x; do
+      mkdir -p $(dirname "/$x")
+      ln -sf `pwd`/"$x" "/$x"
+    done
+  }
+)
+
+# Fix some permissions
+chown root /etc/sudoers.d/dance
+# Ensure directories exist
+mkdir -p /var/dance/{tmp,today}
+# Ensure bleep queue system exists
+touch /var/dance/{new,queue,queue.lock}
+chgrp dance /var/dance/{new,queue,queue.lock}
+
+# Ensure list of today's registered students exists
+if [ ! -f /var/dance/today/registered-students ]; then
+  touch /var/dance/today/registered-students
+fi
+
+# Enable system services
+systemctl restart opensmtpd
+systemctl enable dance-upgrade
+systemctl enable dance-buttons
+systemctl restart dance-buttons
+
+# Set correct Git origin
+git remote add upgrade https://github.com/lessrest/danceschool || true
+
+# Run the hourly script once now
+source /etc/cron.hourly/dance-hourly

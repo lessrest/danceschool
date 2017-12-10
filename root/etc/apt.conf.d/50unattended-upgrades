@@ -1,0 +1,12 @@
+// Configure security upgrades
+Unattended-Upgrade::Origins-Pattern {
+  "origin=Debian,codename=${distro_codename},label=Debian-Security";
+}
+
+// Do send emails to system administrator
+Unattended-Upgrade::Mail "root";
+
+// Automatically reboot at night if necessary
+Unattended-Upgrade::Automatic-Reboot "true";
+Unattended-Upgrade::Automatic-Reboot-WithUsers "true";
+Unattended-Upgrade::Automatic-Reboot-Time "03:00";

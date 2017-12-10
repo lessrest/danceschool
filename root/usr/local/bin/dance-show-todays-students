@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+dance-menu < /var/dance/today/registered-students

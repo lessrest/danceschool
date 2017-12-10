@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+## Figure out the home path of the system
+path=$(realpath $(which dance-home-path))
+echo ${path%/root$(which dance-home-path)}

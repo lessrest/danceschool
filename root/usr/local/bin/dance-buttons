@@ -1,0 +1,56 @@
+#!/usr/bin/env python
+import RPi.GPIO as GPIO
+import time
+import os
+
+times = {}
+keys = {
+  "yellow": "Up",
+  "blue": "Down",
+  "green": "Return",
+  "red": "Escape"
+}
+
+def cb(channel):
+  down = GPIO.input(channel) == 0
+  
+  color = None
+  if channel == 26:
+    color = "red"
+  if channel == 19:
+    color = "green"
+  if channel == 13:
+    color = "blue"
+  if channel == 6:
+    color = "yellow"
+  if color == None:
+    return
+  
+  now = time.time()
+  if down and color in times:
+    if now - times[color] < 0.1:
+      return
+    
+  times[color] = now    
+  if down:
+    print "+", keys[color]
+    os.system("DISPLAY=:0 xdotool keydown " + keys[color])
+  else:
+    print "-", keys[color]
+    os.system("DISPLAY=:0 xdotool keyup " + keys[color])
+
+def enable(button):
+  GPIO.setup(button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+  GPIO.add_event_detect(button, GPIO.BOTH, callback=cb)
+
+try:
+  GPIO.setmode(GPIO.BCM)
+  enable(26)
+  enable(19)
+  enable(13)
+  enable(6)
+  while True:
+    time.sleep(60)
+finally:
+  GPIO.cleanup()
+

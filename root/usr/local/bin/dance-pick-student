@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+jq -r '.[] | (.ID | tostring) + ". " + .Name' < /var/dance/students.json |
+  dance-menu | cut -d . -f 1 | tr -d ' '

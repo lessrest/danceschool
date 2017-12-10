@@ -1,0 +1,26 @@
+#!/usr/bin/env python2
+import json
+import vobject
+import dateutil.rrule as rrule
+from datetime import datetime
+
+today = datetime.today().date()
+
+# Start with no classes today
+classes = {}
+# Read and parse the calendar file
+cal = vobject.readOne(open("/var/dance/calendar.ics", "r").read())
+# Loop over all the recurring events in the calendar
+for recurring in cal.vevent_list:
+    times = list(recurring.rruleset)
+    name  = recurring.summary.value
+    # Any on today's date?
+    #if any(x.date() == today for x in times):
+        # If so, then keep it with name and length in minutes
+    duration = recurring.dtend.value - recurring.dtstart.value
+    classes[name] = {
+       "minutes": int(duration.total_seconds() / 60) 
+   }
+# Save today's classes to a JSON file
+with open("/var/dance/today/classes", "w") as f:
+    json.dump(classes, f)
