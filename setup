@@ -68,6 +68,8 @@ fi
 systemctl restart opensmtpd
 systemctl enable dance-upgrade
 systemctl enable dance-buttons
+systemctl enable dance-scan
+systemctl enable dance-boot
 systemctl restart dance-buttons
 
 # Set correct Git origin
