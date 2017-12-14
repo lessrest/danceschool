@@ -4,11 +4,11 @@
 set -ex
 
 command=$(echo | dance-menu \
-  "1. Skolēns ir aizmirsusi savu identifikācijas karti" \
+  "1. Skolēns ir aizmirsis savu identifikācijas karti" \
   "2. Skolēns nav ieradusies vai aizsūtīts mājup" \
   "3. Kas šodien reģistrējies?" \
   "4. Atjaunināt databāzi" \
-  "5. Sistēmlietojumprogrammatūras aukšdatumošana caur vispasaules globālo tīmeklī" \
+  "5. Sistēmlietojumprogrammatūras aukšdatumošana caur vispasaules globālo tīmekli" \
   "6. Restartēt sistēmu (Vai tiešām? Varbūt piezvani Dagnim.)"
 )
 
