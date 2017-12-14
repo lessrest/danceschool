@@ -1,4 +1,4 @@
-exec xloadimage -onroot -quiet /var/dance/background.jpg
+exec xloadimage -onroot -quiet /var/dance/background.png
 set fwcolor orange
 set font Roboto-42
 set bgcolor orange
