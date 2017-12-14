@@ -1,14 +1,19 @@
 #!/usr/bin/env bash
 set -e
 
-dance-yell "Activating scanner..."
-sleep 5
-dance-yell "Scanner activated."
+sleep 6
+for i in $(seq 1 4); do
+  dance-yell "$1"
+  sleep 0.5
+  dance-yell "un"
+  sleep 0.5
+done
+dance-yell "Gatavs!"
 
 while true; do
   id=$(dance-scan-once)
   if jq '.[] | select(.Admin == "x")' < /var/dance/students.json | grep >/dev/null "$id"; then
-    dance-admin-menu
+    dance-admin-menu || true
   else
     if grep >/dev/null "$id" /var/dance/today/registered-students; then
       dance-yell "Šodien jau reģistrējies!"
