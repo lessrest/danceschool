@@ -7,7 +7,7 @@ command=$(echo | dance-menu \
   "1. Skolēns ir aizmirsusi savu identifikācijas karti" \
   "2. Skolēns nav ieradusies vai aizsūtīts mājup" \
   "3. Kas šodien reģistrējies?" \
-  "4. Refresh database" \
+  "4. Atjaunināt databāzi" \
   "5. Sistēmlietojumprogrammatūras aukšdatumošana caur vispasaules globālo tīmeklī" \
   "6. Restartēt sistēmu (Vai tiešām? Varbūt piezvani Dagnim.)"
 )
@@ -17,13 +17,13 @@ case $command in
   2) dance-unregister-student "$(dance-pick-student)" ;;
   3) dance-show-todays-students ;;
   4)
-    dance-yell "Refreshing student database..."
+    dance-yell "Atjaunina studentu datubāzi..."
     dance-fetch-students
-    dance-yell "Refreshing calendar..."
+    dance-yell "Atjaunina kalendāru..."
     dance-fetch-calendar
-    dance-yell "Uploading log..."
+    dance-yell "Augšuplādē reģistrācias datus..."
     dance-upload-to-spreadsheet
-    dance-yell "Done!"
+    dance-yell "Paveikts!"
     ;;
   5) dance-ui rxvt +sb -fn terminus-32 -rv -e sh -c "sudo dance-upgrade && sleep 5" ;;
   6) reboot ;;
