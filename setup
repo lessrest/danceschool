@@ -21,6 +21,7 @@ pkgs=(
   xdotool             # Tool for faking keypresses
   xloadimage          # Image background loader
   x11-xserver-utils   # For xhost to enable UI services
+  xfonts-terminus     # Cool terminal font
 )
 
 # Fail on error and print activity
