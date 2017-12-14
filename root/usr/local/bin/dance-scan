@@ -2,13 +2,18 @@
 set -e
 
 sleep 6
-for i in $(seq 1 4); do
+for i in $(seq 1 3); do
   dance-yell "$i"
-  sleep 0.5
+  sleep 0.7
   dance-yell "un"
-  sleep 0.5
+  sleep 0.3
 done
-dance-yell "Gatavs!"
+dance-yell "gatavs!"
+
+# Hmm, might be needed on boot.
+dance-scan-once & pid=$!
+sleep 2
+kill "$pid"
 
 while true; do
   id=$(dance-scan-once)
