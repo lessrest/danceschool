@@ -9,4 +9,4 @@ set bargravity c
 set barpadding 28 12
 startup_message off
 exec xhost +
-bind c exec rxvt -fn terminus-32 -rv
+bind c exec rxvt +sb -fn terminus-32 -rv

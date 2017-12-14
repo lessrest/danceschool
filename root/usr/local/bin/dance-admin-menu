@@ -16,7 +16,7 @@ case $command in
   1) dance-welcome-student "$(dance-pick-student)"  ;;
   2) dance-unregister-student "$(dance-pick-student)" ;;
   3) dance-show-todays-students ;;
-  4) dance-ui rxvt -fn terminus-32 -rv -e sh -c "sudo dance-upgrade && sleep 5" ;;
+  4) dance-ui rxvt +sb -fn terminus-32 -rv -e sh -c "sudo dance-upgrade && sleep 5" ;;
   5) reboot ;;
   6)
     dance-yell "Students..."
