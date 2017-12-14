@@ -8,7 +8,7 @@ command=$(echo | dance-menu \
   "2. Skolēns nav ieradusies vai aizsūtīts mājup" \
   "3. Kas šodien reģistrējies?" \
   "4. Sistēmlietojumprogrammatūras aukšdatumošana caur vispasaules globālo tīmeklī" \
-  "5. Restartēt sistēmu (Vai tiešām? Varbūt piezvani Dagnim.)"
+  "5. Restartēt sistēmu (Vai tiešām? Varbūt piezvani Dagnim.)" \
   "6. Refresh database"
 )
 
