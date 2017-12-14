@@ -8,13 +8,25 @@ command=$(echo | dance-menu \
   "2. Skolēns nav ieradusies vai aizsūtīts mājup" \
   "3. Kas šodien reģistrējies?" \
   "4. Sistēmlietojumprogrammatūras aukšdatumošana caur vispasaules globālo tīmeklī" \
-  "5. Restartēt sistēmu. (Vai tiešām? Varbūt piezvani Dagnim.)"
+  "5. Restartēt sistēmu (Vai tiešām? Varbūt piezvani Dagnim.)"
+  "6. Refresh database"
 )
 
 case $command in
   1) dance-welcome-student "$(dance-pick-student)"  ;;
   2) dance-unregister-student "$(dance-pick-student)" ;;
   3) dance-show-todays-students ;;
-  4) dance-ui rxvt -rv -e sh -c "sudo dance-upgrade && sleep 5" ;;
+  4) dance-ui rxvt -fn 10x20 -rv -e sh -c "sudo dance-upgrade && sleep 5" ;;
   5) reboot ;;
+  6)
+    dance-yell "Students..."
+    dance-fetch-students
+    dance-yell "Calendar..."
+    dance-fetch-calendar
+    dance-yell "Today's classes..."
+    dance-update-todays-classes
+    dance-yell "Uploading log..."
+    dance-upload-to-spreadsheet
+    ;;
+
 esac
