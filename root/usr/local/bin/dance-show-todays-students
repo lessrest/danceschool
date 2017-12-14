@@ -1,2 +1,6 @@
 #!/usr/bin/env bash
-dance-menu < /var/dance/today/registered-students
+{
+    while read x; do
+	jq -r ".[] | select(.[\"Card UID\"] == \"$x\") | (.ID | tostring) + \". \" + .Name" < /var/dance/students.json
+    done < /var/dance/today/registered-students
+} | dance-menu | cut -d . -f 1 | tr -d ' '

@@ -5,6 +5,7 @@ Description=Dance school RFID scanning system
 ExecStart=/usr/local/bin/dance-scan
 Restart=always
 RestartSec=3
+After=display-manager.target
 
 [Install]
 WantedBy=multi-user.target

@@ -12,7 +12,7 @@ command=$(echo | dance-menu \
 )
 
 case $command in
-  1) dance-yell "Hey, $(dance-pick-student)!"  ;;
+  1) dance-welcome-student "$(dance-pick-student)"  ;;
   2) dance-yell "Bye, $(dance-pick-student)!" ;;
   3) dance-show-todays-students ;;
   4) dance-ui rxvt -rv -e sh -c "sudo dance-upgrade && sleep 5" ;;

@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 set -e
-echo Scanner activated
+
+dance-yell "Activating scanner..."
+sleep 5
 dance-yell "Scanner activated."
+
 while true; do
   id=$(dance-scan-once)
   if jq '.[] | select(.Admin == "x")' < /var/dance/students.json | grep >/dev/null "$id"; then
@@ -10,13 +13,7 @@ while true; do
     if grep >/dev/null "$id" /var/dance/today/registered-students; then
       dance-yell "Already registered."
     else
-      if dance-register-student "$id" >> /var/dance/new; then
-        dance-enqueue-bleepings &
-        echo "$id" >> /var/dance/today/registered-students
-        dance-yell "Hello, $(dance-student-name "$id")."
-      else
-        dance-yell "Go home, kid!"
-      fi
+      dance-welcome-student "$id"
     fi
   fi
   sleep 3

@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
-jq -r '.[] | (.ID | tostring) + ". " + .Name' < /var/dance/students.json |
-  dance-menu | cut -d . -f 1 | tr -d ' '
+set -eo pipefail
+id=$(jq -r '.[] | (.ID | tostring) + ". " + .Name' < /var/dance/students.json |
+	    dance-menu | cut -d . -f 1 | tr -d ' ')
+jq -r ".[] | select(.ID == $id) | .[\"Card UID\"]" < /var/dance/students.json

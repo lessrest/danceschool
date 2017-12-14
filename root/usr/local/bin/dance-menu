@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -ex
+set -eo pipefail
 menuopts="-fn Roboto-28 -l 8 -nf black -sf black -nb white -sb orange"
 { for x in "$@"; do echo -e "$x"; done; cat; } | grep . |
   dance-ui dmenu -f $menuopts | cut -d . -f 1

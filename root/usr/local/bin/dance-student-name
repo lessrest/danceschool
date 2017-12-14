@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-jq -r ".[] | select(.[\"Card UID\"] == \"$1\") | .Name" < /var/dance/students.json
+jq -r ".[] | select(.[\"Card UID\"] == \"$1\") | (.ID | tostring) + ". " + .Name" < /var/dance/students.json
