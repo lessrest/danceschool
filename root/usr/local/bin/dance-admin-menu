@@ -27,6 +27,7 @@ case $command in
     dance-update-todays-classes
     dance-yell "Uploading log..."
     dance-upload-to-spreadsheet
+    dance-yell "Done!"
     ;;
 
 esac
