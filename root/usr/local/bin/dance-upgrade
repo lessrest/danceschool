@@ -20,7 +20,7 @@ if [[ $(git rev-parse HEAD) != $(git rev-parse upgrade/master) ]]; then
 
   # Rerun the setup script
   echo >>$mail -e "Log:\n"
-  if ./setup >>$mail 2>&1; then
+  if ./setup 2>&1 | tee -a "$mail"; then
     subject="Dance upgrade successful"
   else
     subject="Dance upgrade failed"
