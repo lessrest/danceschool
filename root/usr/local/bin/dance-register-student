@@ -26,6 +26,7 @@ with open("/var/dance/students.json") as studentsfile:
                 n = n + 1
                 bleep = {
                     "Student ID": student["ID"],
+                    "Student name": student["Name"],
                     "Minutes": classes[k]["minutes"],
                     "Class name": k,
                     "Timestamp": time.strftime("%Y-%m-%d %H:%M")

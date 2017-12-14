@@ -36,6 +36,7 @@ def fetch_students():
             bleep = json.loads(line)
             bleepings.append([
                 bleep["Student ID"],
+                bleep["Student name"],
                 bleep["Minutes"],
                 bleep["Class name"],
                 bleep["Timestamp"]
