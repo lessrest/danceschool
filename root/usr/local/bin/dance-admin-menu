@@ -4,11 +4,11 @@
 set -ex
 
 command=$(echo | dance-menu \
-  "1. A student is here but forgot their card" \
-  "2. A student is actually absent today" \
-  "3. Which students have registered today?" \
-  "4. Upgrade software" \
-  "5. Reboot"
+  "1. Skolēns ir aizmirsusi savu identifikācijas karti" \
+  "2. Skolēns nav ieradusies vai aizsūtīts mājup" \
+  "3. Kas šodien reģistrējies?" \
+  "4. Sistēmlietojumprogrammatūras aukšdatumošana caur vispasaules globālo tīmeklī" \
+  "5. Restartēt sistēmu. (Vai tiešām? Varbūt piezvani Dagnim.)"
 )
 
 case $command in

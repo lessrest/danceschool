@@ -11,7 +11,7 @@ while true; do
     dance-admin-menu
   else
     if grep >/dev/null "$id" /var/dance/today/registered-students; then
-      dance-yell "Already registered."
+      dance-yell "Šodien jau reģistrējies!"
     else
       dance-welcome-student "$id"
     fi

@@ -4,7 +4,7 @@ if grep "$1" /var/dance/today/registered-students; then
   if dance-register-student "$1" >> /var/dance/new; then
     dance-enqueue-bleepings &
     echo "$1" >> /var/dance/today/registered-students
-    dance-yell "Hello, $(dance-student-name "$1")."
+    dance-yell "Sveiks, $(dance-student-name "$1")!"
   else
     dance-yell "Go home, kid!"
   fi
