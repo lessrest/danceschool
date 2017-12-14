@@ -3,7 +3,7 @@ set -e
 
 sleep 6
 for i in $(seq 1 4); do
-  dance-yell "$1"
+  dance-yell "$i"
   sleep 0.5
   dance-yell "un"
   sleep 0.5
