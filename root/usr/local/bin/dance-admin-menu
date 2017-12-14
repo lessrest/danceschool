@@ -5,9 +5,9 @@ set -ex
 
 command=$(echo | dance-menu \
   "1. Skolēns ir aizmirsis savu identifikācijas karti" \
-  "2. Skolēns nav ieradusies vai aizsūtīts mājup" \
+  "2. Skolēns nav ieradies vai aizsūtīts mājup" \
   "3. Kas šodien reģistrējies?" \
-  "4. Atjaunināt databāzi" \
+  "4. Atjaunināt datubāzi" \
   "5. Sistēmlietojumprogrammatūras aukšdatumošana caur vispasaules globālo tīmekli" \
   "6. Restartēt sistēmu (Vai tiešām? Varbūt piezvani Dagnim.)"
 )
@@ -21,7 +21,7 @@ case $command in
     dance-fetch-students
     dance-yell "Atjaunina kalendāru..."
     dance-fetch-calendar
-    dance-yell "Augšuplādē reģistrācias datus..."
+    dance-yell "Augšuplādē reģistrācijas datus..."
     dance-upload-to-spreadsheet
     dance-yell "Paveikts!"
     ;;
