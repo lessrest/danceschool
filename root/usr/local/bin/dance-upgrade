@@ -4,9 +4,6 @@ set -ex
 # Go to the place where the source is stored
 cd "$(dance-home-path)"
 
-# DISABLE UPGRADE
-exit
-
 # Download new stuff from the source repository
 git fetch upgrade
 
