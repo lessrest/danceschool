@@ -2,8 +2,11 @@
 import json
 import sys
 import time
+import os
 
 uid = sys.argv[1]
+
+unregister = os.getenv("DANCE_UNREGISTER") == "yes"
 
 with open("/var/dance/students.json") as studentsfile:
     with open("/var/dance/today/classes") as classesfile:
@@ -27,6 +30,8 @@ with open("/var/dance/students.json") as studentsfile:
                     "Class name": k,
                     "Timestamp": time.strftime("%Y-%m-%d %H:%M")
                 }
+                if unregister:
+                    bleep["Minutes"] = 0 - bleep["Minutes"]
                 print json.dumps(bleep)
 
         if n > 0:
