@@ -73,7 +73,7 @@ systemctl enable dance-boot
 systemctl restart dance-buttons
 
 # Set correct Git origin
-# git remote add upgrade https://github.com/lessrest/danceschool || true
+git remote add upgrade https://github.com/lessrest/danceschool || true
 
 # Run the hourly script once now
 source /etc/cron.hourly/dance-hourly
