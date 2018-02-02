@@ -65,7 +65,7 @@ def append_to_worksheet(name, rows):
         len(records) + 2,
         1,
         len(records) + 2 + len(rows) - 1,
-        5 # Number of columns in the log sheet
+        6 # Number of columns in the log sheet
     )
     for i in range(0, len(cells)):
         cells[i].value = rows[cells[i].row - 2 - len(records)][cells[i].col - 1]
