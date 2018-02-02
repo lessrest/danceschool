@@ -39,7 +39,8 @@ def fetch_students():
                 bleep["Student name"],
                 bleep["Minutes"],
                 bleep["Class name"],
-                bleep["Timestamp"]
+                bleep["Timestamp"],
+                bleep["Admin"]
             ])
         if bleepings:
             append_to_worksheet("Log", bleepings)
