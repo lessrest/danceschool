@@ -2,9 +2,9 @@
 
 URL="https://calendar.google.com"
 URL+="/calendar/ical"
-URL+="/ppj8u127fg7b5nvqkdq3nr87o0%40group.calendar.google.com"
+URL+="4h02p1ob4l1hfk0sg4fr7198j0%40group.calendar.google.com"
 URL+="/private"
-URL+="-52032d4919b1be7bba8587fe59890bd6/basic.ics"
+URL+="-a50c0319a8358db90ee57e53ababa4f2/basic.ics"
 
 FILE=/var/dance/calendar.ics      # Location of the calendar file
 TEMP=/var/dance/tmp/calendar.ics  # Location of the temporary download
