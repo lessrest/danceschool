@@ -14,6 +14,7 @@ set -x
   flock -w 30 -e 200 || { echo dance queue lock timeout; exit 1; }
   if [ -e /var/dance/new ]; then
     cat /var/dance/new >> /var/dance/queue
+    cat /var/dance/new >> /var/dance/history
     rm /var/dance/new
   fi
 ) 200>/var/dance/queue.lock
