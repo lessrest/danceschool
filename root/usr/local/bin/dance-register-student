@@ -22,7 +22,7 @@ with open("/var/dance/students.json") as studentsfile:
         classes = json.load(classesfile)
         n = 0
         for k in classes.keys():
-            if k in student:
+            if k in student and student[k] != "":
                 n = n + 1
                 bleep = {
                     "Student ID": student["ID"],
