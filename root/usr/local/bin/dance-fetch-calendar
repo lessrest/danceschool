@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-URL=http://brockman.se/riga-dance-school/calendar.ics
-## We use a <brockman.se> URL that redirects to Google Drive.
-## If the Google URL must be changed, we can update the redirect
-## instead of updating this program's source code.
+URL="https://calendar.google.com"
+URL+="/calendar/ical"
+URL+="/ppj8u127fg7b5nvqkdq3nr87o0%40group.calendar.google.com"
+URL+="/private"
+URL+="-52032d4919b1be7bba8587fe59890bd6/basic.ics"
 
 FILE=/var/dance/calendar.ics      # Location of the calendar file
 TEMP=/var/dance/tmp/calendar.ics  # Location of the temporary download
