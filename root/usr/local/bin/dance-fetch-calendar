@@ -2,7 +2,7 @@
 
 URL="https://calendar.google.com"
 URL+="/calendar/ical"
-URL+="4h02p1ob4l1hfk0sg4fr7198j0%40group.calendar.google.com"
+URL+="/4h02p1ob4l1hfk0sg4fr7198j0%40group.calendar.google.com"
 URL+="/private"
 URL+="-a50c0319a8358db90ee57e53ababa4f2/basic.ics"
 
