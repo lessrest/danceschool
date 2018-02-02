@@ -15,12 +15,12 @@ for recurring in cal.vevent_list:
     times = list(recurring.rruleset)
     name  = recurring.summary.value
     # Any on today's date?
-    #if any(x.date() == today for x in times):
+    if any(x.date() == today for x in times):
         # If so, then keep it with name and length in minutes
-    duration = recurring.dtend.value - recurring.dtstart.value
-    classes[name] = {
-       "minutes": int(duration.total_seconds() / 60) 
-   }
+        duration = recurring.dtend.value - recurring.dtstart.value
+        classes[name] = {
+            "minutes": int(duration.total_seconds() / 60) 
+        }
 # Save today's classes to a JSON file
 with open("/var/dance/today/classes", "w") as f:
     json.dump(classes, f)
