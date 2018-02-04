@@ -11,3 +11,7 @@ startup_message off
 exec xhost +
 bind c exec rxvt +sb -fn terminus-32 -rv
 banish
+
+exec xset s off
+exec xset -dpms
+exec xset s noblank
