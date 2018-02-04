@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+while true; do
+  dance-upload-to-spreadsheet
+  sleep 10
+done

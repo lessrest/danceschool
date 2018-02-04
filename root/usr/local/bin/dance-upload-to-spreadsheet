@@ -31,21 +31,21 @@ def fetch_students():
                     else:
                         time.sleep(0.1)
 
-        bleepings = []
-        for line in queue:
-            bleep = json.loads(line)
-            bleepings.append([
-                bleep["Student ID"],
-                bleep["Student name"],
-                bleep["Minutes"],
-                bleep["Class name"],
-                bleep["Timestamp"],
-                bleep["Admin"]
-            ])
-        if bleepings:
-            append_to_worksheet("Log", bleepings)
-        with open("/var/dance/queue", "w"): pass
-        fcntl.flock(queue, fcntl.LOCK_UN)
+            bleepings = []
+            for line in queue:
+                bleep = json.loads(line)
+                bleepings.append([
+                    bleep["Student ID"],
+                    bleep["Student name"],
+                    bleep["Minutes"],
+                    bleep["Class name"],
+                    bleep["Timestamp"],
+                    bleep["Admin"]
+                ])
+            if bleepings:
+                append_to_worksheet("Log", bleepings)
+            with open("/var/dance/queue", "w"): pass
+            fcntl.flock(queue, fcntl.LOCK_UN)
 
 @retry(
     stop=stop_after_attempt(30),

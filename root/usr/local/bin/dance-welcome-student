@@ -4,8 +4,8 @@ if grep "$1" /var/dance/today/registered-students; then
   dance-yell "Šodien jau reģistrējies!"
 else
   if dance-register-student "$1" >> /var/dance/new; then
-    dance-enqueue-bleepings &
     echo "$1" >> /var/dance/today/registered-students
+    dance-enqueue-bleepings
     dance-yell "Sveiks, $(dance-student-name "$1")!"
   else
     dance-yell "Nav reģistrēts skolēns vai nodarbība."
