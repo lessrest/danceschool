@@ -1,6 +1,7 @@
 [Unit]
 Description=Dance school log uploading service
-After=display-manager.service
+After=network-online.target
+Requires=network-online.target
 
 [Service]
 ExecStart=/usr/local/bin/dance-keep-uploading

@@ -1,5 +1,7 @@
 [Unit]
 Description=Dance school button reading system
+After=graphical.target
+Requires=graphical.target
 
 [Service]
 ExecStart=/usr/local/bin/dance-buttons
