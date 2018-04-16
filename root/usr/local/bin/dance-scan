@@ -17,13 +17,13 @@ kill "$pid"
 
 while true; do
   id=$(dance-scan-once)
+  echo >&2 "Scanned card: $id"
   if jq '.[] | select(.Admin == "x")' < /var/dance/students.json | grep >/dev/null "$id"; then
     export DANCE_ADMIN=$id
     dance-admin-menu || true
   else
     export DANCE_ADMIN=
     if grep >/dev/null "$id" /var/dance/today/registered-students; then
-      echo >&2 "Unregistered card: $id"
       dance-yell "Šodien jau reģistrējies!"
     else
       dance-welcome-student "$id"
