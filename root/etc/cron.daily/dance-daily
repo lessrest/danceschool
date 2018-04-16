@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 ## Runs early each morning.
 
-# Update the list of classes happening today
-dance-update-todays-classes
-
 # Clear the daily registered student list
 echo > /var/dance/today/registered-students
 
 # Possibly upgrade the system from our Git
 dance-upgrade
+
+# Update the list of classes happening today
+dance-update-todays-classes

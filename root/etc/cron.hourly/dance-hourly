@@ -2,5 +2,5 @@
 ## This script is run every hour.
 dance-fetch-students
 dance-fetch-calendar
-dance-update-todays-classes  # Just in case...
 dance-upload-to-spreadsheet
+dance-update-todays-classes  # Just in case...
