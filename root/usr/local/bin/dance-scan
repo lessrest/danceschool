@@ -17,7 +17,7 @@ kill "$pid"
 
 while true; do
   id=$(dance-scan-once)
-  echo >&2 "Scanned card: $id"
+  echo >>/var/dance/id-log "Scanned card: $id"
   if jq '.[] | select(.Admin == "x")' < /var/dance/students.json | grep >/dev/null "$id"; then
     export DANCE_ADMIN=$id
     dance-admin-menu || true
