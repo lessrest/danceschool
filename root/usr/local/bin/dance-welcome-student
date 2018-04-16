@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 set -e
-if grep "$1" /var/dance/today/registered-students; then
-  dance-yell "Šodien jau reģistrējies!"
+if grep -q "$1" /var/dance/today/registered-students; then
+  if jq -r '.[] | .["Card UID"]' </var/dance/students.json | grep -q "$1"; then
+    dance-yell "Šodien jau reģistrējies!"
+  else
+    dance-yell "$1"
+  fi
 else
   if dance-register-student "$1" >> /var/dance/new; then
     echo "$1" >> /var/dance/today/registered-students
