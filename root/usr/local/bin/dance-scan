@@ -23,6 +23,7 @@ while true; do
   else
     export DANCE_ADMIN=
     if grep >/dev/null "$id" /var/dance/today/registered-students; then
+      echo >&2 "Unregistered card: $id"
       dance-yell "Šodien jau reģistrējies!"
     else
       dance-welcome-student "$id"
