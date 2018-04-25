@@ -35,14 +35,14 @@ with open("/var/dance/today/classes", "w") as f:
     json.dump(classes, f)
 
 # Send email if some events were non-recurring
-if len(bad) > 0:
-    msg = MIMEText("\n".join(
-        ["%s %s" % (x.dtstart.value, x.summary.value) for x in bad]
-    ))
-    msg["Subject"] = "Warning: non-recurring events"
-    msg["From"] = "root@raspberrypi"
-    msg["To"] = "root"
-    s = smtplib.SMTP("localhost")
-    s.sendmail("root@raspberrypi", ["root"], msg.as_string())
-    s.quit()
+# if len(bad) > 0:
+#     msg = MIMEText("\n".join(
+#         ["%s %s" % (x.dtstart.value, x.summary.value) for x in bad]
+#     ))
+#     msg["Subject"] = "Warning: non-recurring events"
+#     msg["From"] = "root@raspberrypi"
+#     msg["To"] = "root"
+#     s = smtplib.SMTP("localhost")
+#     s.sendmail("root@raspberrypi", ["root"], msg.as_string())
+#     s.quit()
 
