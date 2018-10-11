@@ -18,22 +18,26 @@ kill "$pid"
 while true; do
   id=$(dance-scan-once)
   echo >>/var/dance/id-log "Scanned card: $id"
-  if jq '.[] | select(.Admin == "x")' < /var/dance/students.json | grep >/dev/null "$id"; then
-    export DANCE_ADMIN=$id
-    dance-admin-menu || true
+  if [ -e /var/dance/is-door ]; then
+    if jq '.[] | .["Card UID"]' | grep -q "$id"; then
+      dance-open
+    fi
   else
-    export DANCE_ADMIN=
-    if [ -e /var/dance/is-door ]; then
-      if jq '.[] | .["Card UID"]' | grep -q "$id"; then
-        dance-open
-      fi
-    else
-      if grep >/dev/null "$id" /var/dance/today/registered-students; then
-        dance-yell "Šodien jau reģistrējies!"
+    if jq '.[] | select(.Admin == "x")' < /var/dance/students.json | grep >/dev/null "$id"; then
+        export DANCE_ADMIN=$id
+        dance-admin-menu || true
       else
-        dance-welcome-student "$id"
+        export DANCE_ADMIN=
+          if grep >/dev/null "$id" /var/dance/today/registered-students; then
+            dance-yell "Šodien jau reģistrējies!"
+          else
+            dance-welcome-student "$id"
+          fi
+        fi
       fi
+      sleep 3
     fi
   fi
-  sleep 3
 done
+
+  
