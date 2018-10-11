@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 set -e
 
-sleep 2
-for i in $(seq 1 3); do
-  dance-yell "$i"
-  sleep 0.4
-  dance-yell "un"
-  sleep 0.2
-done
-dance-yell "gatavs!"
+if [ ! -e /var/dance/is-door ]; then
+  sleep 2
+  for i in $(seq 1 3); do
+    dance-yell "$i"
+    sleep 0.4
+    dance-yell "un"
+    sleep 0.2
+  done
+  dance-yell "gatavs!"
+fi
 
 # Hmm, might be needed on boot.
 dance-scan-once & pid=$!
@@ -19,7 +21,7 @@ while true; do
   id=$(dance-scan-once)
   echo >>/var/dance/id-log "Scanned card: $id"
   if [ -e /var/dance/is-door ]; then
-    if jq '.[] | .["Card UID"]' | grep -q "$id"; then
+    if jq </var/dance/students.json '.[] | .["Card UID"]' | grep -q "$id"; then
       dance-open
     fi
   else
