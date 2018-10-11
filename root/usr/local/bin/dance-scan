@@ -26,17 +26,16 @@ while true; do
     if jq '.[] | select(.Admin == "x")' < /var/dance/students.json | grep >/dev/null "$id"; then
         export DANCE_ADMIN=$id
         dance-admin-menu || true
-      else
-        export DANCE_ADMIN=
-          if grep >/dev/null "$id" /var/dance/today/registered-students; then
-            dance-yell "Šodien jau reģistrējies!"
-          else
-            dance-welcome-student "$id"
-          fi
+    else
+      export DANCE_ADMIN=
+        if grep >/dev/null "$id" /var/dance/today/registered-students; then
+          dance-yell "Šodien jau reģistrējies!"
+        else
+          dance-welcome-student "$id"
         fi
       fi
-      sleep 3
     fi
+    sleep 3
   fi
 done
 
