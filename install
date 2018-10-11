@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# Array of Debian packages to install
+pkgs=(
+  apt-listchanges     # Report updates to admin
+  curl                # HTTP download tool
+  dmenu               # Keyboard menu tool
+  fonts-roboto        # International font
+  git                 # Source repository tool
+  jq                  # JSON debugging tool
+  lightdm             # Graphical login manager
+  mailutils           # The `mail' program
+  ntp                 # Accurate network clock sync
+  opensmtpd           # SMTP mail server
+  openssh-server      # SSH remote access server
+  python-pip          # Python package installer
+  ratpoison           # Window manager
+  screen              # Terminal multiplexer
+  sudo                # User switching tool
+  unattended-upgrades # Automatic Debian updates
+  xdotool             # Tool for faking keypresses
+  xloadimage          # Image background loader
+  x11-xserver-utils   # For xhost to enable UI services
+  xfonts-terminus     # Cool terminal font
+)
+
+# Install Debian packages
+export DEBIAN_FRONTEND=noninteractive
+apt update -q && apt install -q -yy "${pkgs[@]}"
+
+# Install Python packages
+pip -q install -r requirements.txt
+
+if [ ! -d /usr/local/src/python-spi ]; then
+  (
+    cd /usr/local/src
+    git clone https://github.com/tomstokes/python-spi
+    cd python-spi
+    sudo python setup.py install
+  )
+fi
