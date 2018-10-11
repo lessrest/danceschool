@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-DISPLAY=:0 sudo -u dance ratpoison -c "echo $@"
+DISPLAY=:0 sudo -u dance ratpoison -c "echo $@" || echo whatever
