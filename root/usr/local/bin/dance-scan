@@ -28,11 +28,10 @@ while true; do
         dance-admin-menu || true
     else
       export DANCE_ADMIN=
-        if grep >/dev/null "$id" /var/dance/today/registered-students; then
-          dance-yell "Šodien jau reģistrējies!"
-        else
-          dance-welcome-student "$id"
-        fi
+      if grep >/dev/null "$id" /var/dance/today/registered-students; then
+        dance-yell "Šodien jau reģistrējies!"
+      else
+        dance-welcome-student "$id"
       fi
     fi
     sleep 3
