@@ -47,7 +47,7 @@ fi
 ( set +x; cd root; find -type f | {
     while read x; do
       mkdir -p $(dirname "/$x")
-      ln -sf `pwd`/"$x" "/$x"
+      ln -f `pwd`/"$x" "/$x"
     done
   }
 )
