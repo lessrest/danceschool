@@ -23,10 +23,16 @@ while true; do
     dance-admin-menu || true
   else
     export DANCE_ADMIN=
-    if grep >/dev/null "$id" /var/dance/today/registered-students; then
-      dance-yell "Šodien jau reģistrējies!"
+    if [ -e /var/dance/is-door ]; then
+      if jq '.[] | .["Card UID"]' | grep -q "$id"; then
+        dance-open
+      fi
     else
-      dance-welcome-student "$id"
+      if grep >/dev/null "$id" /var/dance/today/registered-students; then
+        dance-yell "Šodien jau reģistrējies!"
+      else
+        dance-welcome-student "$id"
+      fi
     fi
   fi
   sleep 3
