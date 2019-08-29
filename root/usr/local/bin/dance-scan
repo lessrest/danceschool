@@ -40,7 +40,7 @@ while true; do
         dance-welcome-student "$id"
       fi
     fi
-    sleep 3
+    sleep 1
   fi
 done
 
