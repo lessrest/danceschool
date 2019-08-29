@@ -1,0 +1,28 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from pirc522 import RFID
+import signal
+
+rdr = RFID()
+
+def end_read(signal, frame):
+    rdr.cleanup()
+    sys.exit(1)
+
+signal.signal(signal.SIGINT, end_read)
+
+while True:
+    rdr.wait_for_tag()
+    (error, tag_type) = rdr.request()
+    if not error:
+        (error, uid) = rdr.anticoll()
+        if not error:
+            hexuid = "{:02X} {:02X} {:02X} {:02X}".format(uid[0], uid[1], uid[2], uid[3])
+            key = [0xff, 0xff, 0xff, 0xff, 0xff, 0xff]
+            if not rdr.select_tag(uid):
+                if not rdr.card_auth(rdr.auth_a, 8, key, uid):
+                    print hexuid
+                    rdr.stop_crypto()
+                    rdr.cleanup()
+                    sys.exit(0)

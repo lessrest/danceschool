@@ -39,3 +39,6 @@ if [ ! -d /usr/local/src/python-spi ]; then
     sudo python setup.py install
   )
 fi
+
+sudo pip install spidev
+sudo pip install pi-rc522
