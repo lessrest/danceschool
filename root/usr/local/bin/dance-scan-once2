@@ -3,6 +3,7 @@
 
 from pirc522 import RFID
 import signal
+import sys
 
 rdr = RFID()
 
