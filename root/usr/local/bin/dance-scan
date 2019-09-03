@@ -13,12 +13,12 @@ if [ ! -e /var/dance/is-door ]; then
 fi
 
 # Hmm, might be needed on boot.
-dance-scan-once2 & pid=$!
+dance-scan-once & pid=$!
 sleep 2
 kill "$pid"
 
 while true; do
-  id=$(dance-scan-once2 || true)
+  id=$(dance-scan-once || true)
   if [ -z "$id" ]; then
     continue
   fi
